@@ -1,0 +1,77 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>用户注册</title>
+        <link type="images/x-icon" rel="shortcut icon" href="static/food.png">
+    </head>
+    <body>
+        {% if ok %}
+            <script>
+                alert('用户注册成功')
+            </script>
+        {% endif %}
+        {% for message in form.email.errors %}
+            <div style="color:#F00">
+                {{message}}
+            </div>
+        {% endfor %}
+        <center>
+            <h3>填写注册信息</h3>
+            <form action="http://localhost:5000/regedit" method=post>
+                {{form.hidden_tag()}}
+                <br><br><br>
+                {{form.username.label}}<br>
+                {{form.username}}
+                {% for message in form.username.errors %}
+                    <div style="color:#F00">
+                        {{message}}
+                    </div>
+                {% endfor %}<br>
+
+                {{form.password.label}}<br>
+                {{form.password}}
+                {% for message in form.password.errors %}
+                    <div style="color:#F00">
+                        {{message}}
+                    </div>
+                {% endfor %}<br>
+
+                {{form.password_.label}}<br>
+                {{form.password_}}
+                {% for message in form.password_.errors %}
+                    <div style="color:#F00">
+                        {{message}}
+                    </div>
+                {% endfor %}<br>
+
+                {{form.age.label}}<br>
+                {{form.age}}
+                {% for message in form.age.errors %}
+                    <div style="color:#F00">
+                        {{message}}
+                    </div>
+                {% endfor %}<br>
+
+                {{form.email.label}}<br>
+                {{form.email}}
+                {% for message in form.email.errors %}
+                    <div style="color:#F00">
+                        {{message}}
+                    </div>
+                {% endfor %}<br>
+
+                {{form.telphone.label}}<br>
+                {{form.telphone}}
+                {% for message in form.telphone.errors %}
+                    <div style="color:#F00">
+                        {{message}}
+                    </div>
+                {% endfor %}<br>
+                <br><br><br>
+                {{form.submit}}
+                <br><br><br>
+                已有账号？<a href="http://localhost:5000/login">去登录</a>
+            </form>
+        </center>
+    </body>
+</html>

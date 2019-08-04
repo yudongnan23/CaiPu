@@ -1,0 +1,239 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}懒人菜谱{% endblock %}
+{% block styles %}
+    {{super()}}
+     <link type="images/x-icon" rel="shortcut icon" href="static/food.png">
+    <style type="text/css">
+
+        #search_top{
+            width:100%;
+            height:120px;
+            background:#eeeeee;
+        }
+        #search_name{
+            margin-left:300px;
+         }
+
+        .h3{
+            font-family:"楷体";
+            color:#000fff;
+            margin-left:50px;
+
+        }
+
+        #div{
+            width:100%;
+            height:40px;
+            background:#eeeeee;
+            float:left;
+        }
+        #li1{
+            list-style:none;
+            width:100px;
+            height: 50px;
+            float: left;
+            margin-left:150px;
+        }
+        #li2{
+            list-style:none;
+            width:180px;
+            height: 30px;
+            float: left;
+            margin-top:35px;
+            margin-left:10px;
+        }
+        #li3{
+            list-style:none;
+            width:30px;
+            height: 30px;
+            float: left;
+            margin-top:35px;
+        }
+        .left{
+            width:15%;
+            float:left;
+        }
+        {% block center %}
+        .center{
+            width:55%;
+            float:left;
+        }
+        {% endblock %}
+        .center li{
+            list-style:none;
+            width:160px;
+            height: 160px;
+            float: left;
+            margin-left: 50px;
+            margin-top: 30px;
+        .middle{
+            width:25%;
+            float:left;
+
+        }
+
+
+        #doulist{
+            width:25%;
+            margin-bottom:40px;
+            }
+
+        #doulist ul{
+            border-top:1px solid #eee;
+        }
+
+        #doulist ul li{
+            list-style:none;
+            position:relative;padding:15px 0;border-bottom:1px solid #eee; zoom:1;
+            }
+
+        #doulist a{
+            font-size:13px;
+            }
+
+        #doulist .title{
+            width:247px
+            }
+
+        #doulist li span{
+            font-size:13px;float:right;color:#999;
+            }
+    </style>
+{% endblock %}
+
+{% block navbar %}
+<div class="navbar navbar-inverse" role="navigation">
+        <div class="comtainer">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="http://localhost:5000">首页</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="http://www.baidu.com">赣菜</a></li>
+                    <li><a href="http://www.baidu.com">粤菜</a></li>
+                    <li><a href="http://www.baidu.com">湘菜</a></li>
+                    <li><a href="http://www.baidu.com">川菜</a></li>
+                    <li><a href="http://www.baidu.com">闽菜</a></li>
+                    <li><a href="http://www.baidu.com">浙菜</a></li>
+                    <li><a href="http://www.baidu.com">徽菜</a></li>
+                    <li><a href="http://www.baidu.com">鲁菜</a></li>
+                    <li><a href="http://www.baidu.com">苏菜</a></li>
+                    <li><a href="http://www.baidu.com"> 豫菜</a></li>
+                    <li><a href="http://www.baidu.com">京菜</a></li>
+                    <li><a href="http://www.baidu.com">沪菜</a></li>
+                     <li><a href="http://www.baidu.com">陕菜</a></li>
+                    <li><a href="http://www.baidu.com">东北菜</a></li>
+                    <li><a href="http://www.baidu.com">皖北菜</a></li>
+                    <li><a href="https://baike.baidu.com/item/%E5%85%AB%E5%A4%A7%E8%8F%9C%E7%B3%BB/873948?fr=aladdin#4_5">菜系百科</a>
+                    <li><a href="http://www.baidu.com">用户指南</a></li>
+                    <li><a href="http://www.baidu.com">关于我们</a></li>
+                    {% block user_ok %}
+                    {% if ok %}
+                        <li><a href="http://localhost:5000/user">{{username}}</a></li>
+                    {% else %}
+                    <li><a href="http://localhost:5000/login">登录/注册</a></li>
+                    {% endif %}
+                    {% endblock %}
+
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+<div style="float:left:width:100%;">
+    <div id="search_top">
+        <form action="http://localhost:5000/search" method=get>
+        <ul>
+            <li id="li1">
+                <h2 class="h3">懒人菜谱</h2>
+            </li><li id="li2">
+                <input  class="search_name" name="search_name" type="text" width="300px" height="40px" placeholder="请输入菜名、菜系或烹饪法"  >
+            </li><li id="li3">
+                <input type="submit" value="搜索" >
+            </li>
+        </ul>
+        </form>
+    </div>
+    {% block video %}
+    {% endblock %}
+
+    <div class="left"><img src="static/white.png"></div>
+<div class="center">
+    {% block main %}
+    <br>
+    <h2 style="font-family:'楷体'"> 选菜谱</h2>
+    <form action="http://localhost:5000/more" method=get>
+
+            <input class="button" type="submit" style="border:none;background:white;font-family:'楷体';font-size:16px;" value="最新" onmouseover="this.style.backgroundColor='#abcdef'" onmouseout="this.style.backgroundColor='white'">
+            &nbsp;&nbsp;<input class="button" type="submit" style="border:none;background:white;font-family:'楷体';font-size:16px;" value="最热" onmouseover="this.style.backgroundColor='#abcdef'" onmouseout="this.style.backgroundColor='white'">
+             &nbsp;&nbsp;<input class="button" type="submit" style="border:none;background:white;font-family:'楷体';font-size:16px;" value="经典" onmouseover="this.style.backgroundColor='#abcdef'" onmouseout="this.style.backgroundColor='white'">
+            &nbsp;&nbsp;<input class="button" type="submit" style="border:none;background:white;font-family:'楷体';font-size:16px;" value="简单易学" onmouseover="this.style.backgroundColor='#abcdef'" onmouseout="this.style.backgroundColor='white'">
+            &nbsp;&nbsp;<input class="button" type="submit" style="border:none;background:white;font-family:'楷体';font-size:16px;" value="好评" onmouseover="this.style.backgroundColor='#abcdef'" onmouseout="this.style.backgroundColor='white'">
+             &nbsp;&nbsp;<input class="button" type="submit" style="border:none;background:white;font-family:'楷体';font-size:16px;" value="时尚" onmouseover="this.style.backgroundColor='#abcdef'" onmouseout="this.style.backgroundColor='white'">
+             &nbsp;&nbsp;<input class="button" type="submit" style="border:none;background:white;font-family:'楷体';font-size:16px;" value="黑暗料理" onmouseover="this.style.backgroundColor='#abcdef'" onmouseout="this.style.backgroundColor='white'">
+             &nbsp;&nbsp;<input class="button" type="submit" style="border:none;background:white;font-family:'楷体';font-size:16px;" value="海鲜" onmouseover="this.style.backgroundColor='#abcdef'" onmouseout="this.style.backgroundColor='white'" >
+             &nbsp;&nbsp;<input class="button" type="submit" style="border:none;background:white;font-family:'楷体';font-size:16px;" value="小菜" onmouseover="this.style.backgroundColor='#abcdef'" onmouseout="this.style.backgroundColor='white'">
+             &nbsp;&nbsp;<input class="button" type="submit" style="border:none;background:white;font-family:'楷体';font-size:16px;" value="招牌" onmouseover="this.style.backgroundColor='#abcdef'" onmouseout="this.style.backgroundColor='white'">
+             &nbsp;&nbsp;<input class="button" type="submit" style="border:none;background:white;font-family:'楷体';font-size:16px;" value="甜品" onmouseover="this.style.backgroundColor='#abcdef'" onmouseout="this.style.backgroundColor='white'">
+             &nbsp;&nbsp;<input class="button" type="submit" style="border:none;background:white;font-family:'楷体';font-size:16px;" value="冷门" onmouseover="this.style.backgroundColor='#abcdef'" onmouseout="this.style.backgroundColor='white'">
+
+    </form>
+    <hr>
+    <ul>
+        {% for cookbook in list %}
+            <li>
+                <center>
+                    <img src="{{cookbook[1]}}" width="160px" height="160px">
+                </center>
+                <center>
+                    <a href="http://www.baidu.com">{{cookbook[2]}}</a>
+                </center>
+            </li>
+        {% endfor %}
+        </ul>
+    {% endblock %}
+</div>
+
+<div class="middle">
+    <br>
+    <br>
+    <br>
+    <br>
+    <img src="static/guanggao.png">
+    <br>
+    <div id="doulist">
+            <h4 style="font-family: '楷体';color: darkorange;margin-left:20px;">热门菜谱排行榜</h4>
+            <ul>
+                <hr>
+                <li>
+
+                <div class="title"><a target="_blank" href="https://www.douban.com/doulist/947900/">麻辣小龙虾</a></div><span>1294推荐</span>
+                </li>
+                <hr>
+                <li>
+
+                <div class="title"><a target="_blank" href="https://www.douban.com/doulist/4012165/">清蒸鲈鱼</a></div><span>6推荐</span>
+                </li>
+                <hr>
+                <li>
+
+                <div class="title"><a target="_blank" href="https://www.douban.com/doulist/1125971/">辣椒炒肉</a></div><span>87推荐</span>
+                </li>
+                <hr>
+                <li>
+
+                <div class="title"><a target="_blank" href="https://www.douban.com/doulist/669101/">酒香花甲</a></div> <span>30推荐</span>
+                </li>
+                <hr>
+            </ul>
+        </div>
+
+</div>
+
+<div class="right"></div>
+</div>
+{% endblock %}
+
+

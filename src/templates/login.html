@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>用户登录</title>
+        <link type="images/x-icon" rel="shortcut icon" href="static/food.png">
+    </head>
+    <body>
+        {% if flag %}
+            <script>
+                alert('用户名或密码错误')
+            </script>
+        {% endif %}
+        {% if ok %}
+            <script>
+                alert('登录成功')
+            </script>
+        {% endif %}
+        <form action="http://localhost:5000/login" method=post>
+            <center>
+                <br><br><br><br>
+                {{form.hidden_tag()}}
+                <p>
+                {{form.username.label}}<br>
+                {{form.username(size=30)}}
+                {% for message in form.username.errors %}
+                <div style="color:#F00">
+                    {{message}}
+                </div>
+                {% endfor %}
+                </p>
+                <br><br><br>
+                {{form.password.label}}<br>
+                {{form.password(size=30)}}
+                {% for message in form.password.errors %}
+                <div style="color:#F00">
+                    {{message}}
+                </div>
+                {% endfor %}
+                <br><br><br>
+                {{form.submit_login}}
+                <br><br><br><br><br><br><br><br><br><br><br><br>
+                没有账号？<a href="http://localhost:5000/regedit">注册</a>一个
+            </center>
+        </form>
+    </body>
+</html>

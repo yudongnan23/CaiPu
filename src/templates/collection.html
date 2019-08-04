@@ -1,0 +1,92 @@
+{% extends 'bootstrap/base.html' %}
+{% block styles %}
+    {{super()}}
+    <link type="images/x-icon" rel="shortcut icon" href="static/food.png">
+    <style type="text/css">
+            #Aidv{
+                width:100%;
+            }
+            .li{
+                width:100%;
+                float:left:
+            }
+    </style>
+{% endblock %}
+{% block navbar %}
+    <div class="navbar navbar-inverse" role="navigation">
+        <div class="comtainer">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="http://localhost:5000">首页</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="http://www.baidu.com">赣菜</a></li>
+                    <li><a href="http://www.baidu.com">粤菜</a></li>
+                    <li><a href="http://www.baidu.com">湘菜</a></li>
+                    <li><a href="http://www.baidu.com">川菜</a></li>
+                    <li><a href="http://www.baidu.com">闽菜</a></li>
+                    <li><a href="http://www.baidu.com">浙菜</a></li>
+                    <li><a href="http://www.baidu.com">徽菜</a></li>
+                    <li><a href="http://www.baidu.com">鲁菜</a></li>
+                    <li><a href="http://www.baidu.com">苏菜</a></li>
+                    <li><a href="http://www.baidu.com"> 豫菜</a></li>
+                    <li><a href="http://www.baidu.com">京菜</a></li>
+                    <li><a href="http://www.baidu.com">沪菜</a></li>
+                     <li><a href="http://www.baidu.com">陕菜</a></li>
+                    <li><a href="http://www.baidu.com">东北菜</a></li>
+                    <li><a href="http://www.baidu.com">皖北菜</a></li>
+                    <li><a href="https://baike.baidu.com/item/%E5%85%AB%E5%A4%A7%E8%8F%9C%E7%B3%BB/873948?fr=aladdin#4_5">菜系百科</a>
+                    <li><a href="http://www.baidu.com">用户指南</a></li>
+                    <li><a href="http://www.baidu.com">关于我们</a></li>
+                    {% if ok %}
+                        <li><a href="http://localhost:5000/user">{{username}}</a></li>
+                    {% else %}
+                    <li><a href="http://localhost:5000/login">登录/注册</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block content %}
+<center>
+    <h3 style="font-family:'楷体'"><strong>我的收藏</strong></h3>
+    <div id="Adiv">
+        <ul>
+        {% for collection in collections %}
+            <li style="list-style:none;">
+        <div class="li">
+            <hr style="margin-top:50px">
+            <img src="{{collection[2]}}" style="width:60px;height:60px;float:left">
+            <br>
+    <center><a style="font-family:'楷体';float:left;color:lightblue;font-size:20px;margin-left:350px;"href="http://localhost:5000/search?search_name={{collection[0]}}">{{collection[0]}}</a></center>
+            <input type="button" id="button_delete_sc" style="background:white;color:lightblue;border:none;font-size:15px;font-family:'楷体'" value="删除">
+            <h5 style="font-family:'楷体';float:right">收藏时间：{{collection[1]}}</h5>
+
+
+            <script src = "http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+            <script>
+                    $(function(){
+                    $("#button_delete_sc").click(function(){
+                        $.ajax({
+                            url:"/delete_collection",
+                            type:"POST",
+                            dataType:"json",
+                            data:{"id":"{{collection[3]}}"},
+                            success:function(data){}
+                        })
+                    })
+                })
+
+            </script>
+            </div>
+</li>
+        {% endfor %}
+              </ul>
+
+
+    </div>
+    </center>
+
+
+{% endblock %}

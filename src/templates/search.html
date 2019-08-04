@@ -1,0 +1,147 @@
+{% extends "more.html" %}
+{% block user_ok %}
+    {% if username_ok %}
+        <li><a href="http://localhost:5000/user">{{username}}</a></li>
+    {% else %}
+        <li><a href="http://localhost:5000/login">登录/注册</a></li>
+    {% endif %}
+{% endblock %}
+{% block title %}
+    {% if ok %}{{book[1]}}
+    {% else %}懒人菜谱{% endif %}
+{% endblock %}
+{% block styles %}
+    {{super()}}
+    <style type="text/css">
+        #video{
+            width: 350px;
+            height: 250px;
+            margin-left: 80px;
+            margin-top: 5px;
+        }
+        #sc{
+            font-family:'楷体';
+            background:white;
+            border:none
+        }
+        #sc_click{
+            font-family:'楷体';
+            background:white;
+            border:none
+         }
+    </style>
+{% endblock %}
+{% block center %}
+        .center{
+            width:55%;
+            height:800px;
+            float:left;
+        }
+{% endblock %}
+{% block white %}
+{% endblock %}
+{% block video %}
+{% if ok %}
+<div style="width:100%;background: #abcdef;height: 300px">
+
+            <h1 style="width: 200px;color: white;font-family: '楷体';float: left;margin-left: 240px;margin-top: 120px">懒人<img src="static/food_.png">菜谱</h1>
+            <video id="video" controls>
+                <source src="{{book[3]}}" type="video/mp4">
+            </video>
+        </div>
+{% endif %}
+{% endblock %}
+{% block main %}
+    {% if ok %}
+<div>
+        <div style="float:left;"> <h2 style="font-family:'楷体';float:left;">菜名： {{book[1]}}<strong></strong></h2></div>
+        <br>&nbsp;&nbsp;<input type="button" style="font-family:'楷体';font-size:20px;border:none;color:lightblue;background:white" onclick="diag()" id="book_comment" value="评论">
+            <!--<input type="button">-->
+        <div style="float:right;margin-left:10px;"><br>
+            {% if username_ok %}
+                <img src="static/{{sc_picture}}"><button type="button" id="sc">{{sc_word}}</button>
+            <img src="static/{{zan_picture}}"><button style="font-family:'楷体';border:none;background:white" id="zan">{{book[5]}}</button>
+            {% else %}
+                <form action="http://localhost:5000/login" method=post>
+                    <img src="static/{{sc_picture}}"><button id="sc_click">收藏</button>
+                    <img src="static/{{zan_picture}}"><button style="font-family:'楷体';border:none;background:white">{{book[5]}}</button>
+            </form>
+            {% endif %}
+        </div>
+        </div>
+      <div style="margin-top:80px;float:left;">  <h3 style="font-family:'楷体';">做法步骤</h3>
+/
+          <hr>
+          <p style="font-family:'楷体';">
+              {% for item in textlist %}
+                {{item}}<br>
+              {% endfor %}
+          </p>
+          <br>
+          <br>
+          <h3 style="font-family:'楷体';">用户评论</h3>
+          <hr>
+          {% for comment in comments %}
+
+            <fieldset style="color:lightblue"> <h4 style="font-family:'楷体';float:left;margin-top:10px;">{{comment[0]}}</h4></fieldset>
+
+<div>
+           <h6 style="font-family:'楷体';margin-left:60px;color: darkorange;">{{comment[1]}}</h6>
+                    <center><h6 style="font-family:'楷体';float:right">{{comment[3]}}</h6></center>
+                    <hr style="margin-top:50px">
+</div>
+          {% endfor %}
+
+
+      </div>
+    {% else %}
+        <center>
+            <br><br><br><br>
+            <img src="static/sorry.png">
+            <h2 style="font-family:'楷体';"><strong>Sorry!</strong>没有找到<strong>{{search_name}}</strong></h2>
+        </center>
+    {% endif %}
+<script type="text/javascript">
+
+function diag()
+{
+    var str=prompt("请输入你要评论的信息：");
+
+}
+
+
+</script>
+<script src = "http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+<script>
+        {% if ok %}
+        $(function(){
+        $("#zan").click(function(){
+            $.ajax({
+                url:"/zan",
+                type:"POST",
+                dataType:"json",
+                data:{"book_title":"{{book[1]}}","zan_number":"{{book[5]}}"},
+                success:function(data){}
+            })
+        })
+    })
+
+    {% endif %}
+</script>
+<script>
+{% if ok %}
+    $(function(){
+        $("#sc").click(function(){
+            $.ajax({
+                url:"/sc_click",
+                type:"POST",
+                dataType:"json",
+                data:{"sc_click":"OK","book_title":"{{book[1]}}"},
+                success:function(data){}
+            })
+        })
+    })
+{% endif %}
+</script>
+
+{% endblock %}

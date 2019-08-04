@@ -1,0 +1,58 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{{username}}</title>
+        <link type="images/x-icon" rel="shortcut icon" href="static/food.png">
+    </head>
+    <body>
+        {% if ok %}
+            <script>
+                alert('数据修改成功')
+            </script>
+        {% endif %}
+        {% if flag %}
+            <script>
+                alert('退出登录成功')
+            </script>
+        {% endif %}
+        <form action="http://localhost:5000/user" method=post>
+            <center>
+                <h3>用户基本信息</h3>
+                <br><br><br>
+                {{form.hidden_tag()}}
+                {{form.username.label}}
+                {{form.username}}
+                {% for message in form.username.errors %}
+                    <div style="color:#F00">{{message}}</div>
+                {% endfor %}<br><br>
+
+                {{form.age.label}}
+                {{form.age}}
+                {% for message in form.age.errors %}
+                    <div style="color:#F00">{{message}}</div>
+                {% endfor %}<br><br>
+
+                {{form.email.label}}
+                {{form.email}}
+                {% for message in form.email.errors %}
+                    <div style="color:#F00">{{message}}</div>
+                {% endfor %}<br><br>
+
+                {{form.telphone.label}}
+                {{form.telphone}}
+                {% for message in form.telphone.errors %}
+                    <div style="color:#F00">{{message}}</div>
+                {% endfor %}<br><br>
+
+                {{form.date.label}}
+                {{form.date}}<br>
+
+                <br><br><br>
+                {{form.update}}
+                {{form.loginout}}
+                <br><br><br><br><br>
+                返回<a href="http://localhost:5000">首页</a>
+            </center>
+        </form>
+    </body>
+</html>

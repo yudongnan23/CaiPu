@@ -1,0 +1,552 @@
+{% extends "bootstrap/base.html" %}
+<!-- 覆盖父模板的title块 -->
+{% block title %}懒人菜谱{% endblock %}
+{% block styles %}
+    {{super()}}
+    <link type="images/x-icon" rel="shortcut icon" href="static/food.png">
+    <style type="text/css">
+        #header{
+            width:100%;
+            height:200px;
+            background:black;
+        }
+        .middle{
+            float:left;
+            margin:0  auto;
+            width:776px;
+        }
+        .left{
+            float:left;
+            height:600px;
+            clear:right;
+            width:10%;
+            background-color:white;
+        }
+        .center{
+            float:left;
+            clear:right;
+            width:65%;
+            height:600px;
+        }
+        .center li{
+            list-style:none;
+            width:160px;
+            height: 160px;
+            float: left;
+            margin-left: 40px;
+            margin-top: 30px;
+        }
+         .right{
+            float:left;
+            width:25%;
+            height:600px;
+        }
+
+        }
+        .footer{
+            margin:0  auto;
+            width:100%;
+            height:50px;
+            clear:both;
+            background-color:white;
+        }
+
+        DIV.digg {
+            PADDING-RIGHT: 3px; PADDING-LEFT: 3px; PADDING-BOTTOM: 3px;
+            MARGIN: 3px; PADDING-TOP: 3px; TEXT-ALIGN: center
+        }
+        DIV.digg A {
+            BORDER-RIGHT: #aaaadd 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #aaaadd 1px solid;
+            PADDING-LEFT: 5px; PADDING-BOTTOM: 2px; MARGIN: 2px;
+            BORDER-LEFT: #aaaadd 1px solid; COLOR: #000099; PADDING-TOP: 2px;
+            BORDER-BOTTOM: #aaaadd 1px solid; TEXT-DECORATION: none
+        }
+        DIV.digg A:hover {
+            BORDER-RIGHT: #000099 1px solid; BORDER-TOP: #000099 1px solid;
+            BORDER-LEFT: #000099 1px solid; COLOR: #000; BORDER-BOTTOM: #000099 1px solid
+        }
+        DIV.digg A:active {
+            BORDER-RIGHT: #000099 1px solid; BORDER-TOP: #000099 1px solid;
+            BORDER-LEFT: #000099 1px solid; COLOR: #000; BORDER-BOTTOM: #000099 1px solid
+        }
+        DIV.digg SPAN.current {
+            BORDER-RIGHT: #000099 1px solid; PADDING-RIGHT: 5px;
+            BORDER-TOP: #000099 1px solid; PADDING-LEFT: 5px; FONT-WEIGHT: bold;
+            PADDING-BOTTOM: 2px; MARGIN: 2px; BORDER-LEFT: #000099 1px solid;
+            COLOR: #fff; PADDING-TOP: 2px; BORDER-BOTTOM: #000099 1px solid; BACKGROUND-COLOR: #000099
+        }
+        DIV.digg SPAN.disabled {
+            BORDER-RIGHT: #eee 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #eee 1px solid;
+            PADDING-LEFT: 5px; PADDING-BOTTOM: 2px; MARGIN: 2px;
+            BORDER-LEFT: #eee 1px solid; COLOR: #ddd; PADDING-TOP: 2px;
+            BORDER-BOTTOM: #eee 1px solid
+        }
+        #pic1 {
+            width:330px;
+            height:200px;
+            float:right;
+            background-size:contain;
+            background-repeat:no-repeat;
+        }
+        #pic2 {
+            width:330px;
+            height:200px;
+            float:right;
+            background-size:contain;
+            background-repeat:no-repeat;
+        }
+        #pic3 {
+            width:330px;
+            height:200px;
+            float:right;
+            background-size:contain;
+            background-repeat:no-repeat;
+        }
+        #pic4 {
+            width:330px;
+            height:200px;
+            float:right;
+            background-size:contain;
+            background-repeat:no-repeat;
+        }
+        .t1 {
+            width:60px;
+            height:60px;
+            background-repeat:no-repeat;
+            background-size:contain;
+        }
+        #h3{
+            color: cornflowerblue;
+            margin-left: 20px;
+            font-size:20px;
+
+        }
+        #div_search{
+            width:100%;
+            float:right;
+            margin-left:100px;
+        }
+        .top{
+            width:160px;
+            height:180px;
+            margin-left: 40px;
+        }
+    #advice{
+        width:100px;
+        height:400px;
+    }
+
+ #doulist{
+            margin-bottom:40px;
+            }
+
+        #doulist ul{
+            border-top:1px solid #eee;
+        }
+
+        #doulist ul li{
+            list-style:none;
+            position:relative;padding:15px 0;border-bottom:1px solid #eee; zoom:1;
+            }
+
+        #doulist a{
+            font-size:13px;
+            }
+
+        #doulist .title{
+            width:247px
+            }
+
+        #doulist li span{
+            font-size:13px;float:right;color:#999;
+            }
+div#navsecond h2, div#sidebar h2	{
+   	font-size: 14px;
+   	margin:0;
+   	padding:10px 0 5px 10px;
+   	color:#000;
+   	display:block;
+   	border-bottom:0px solid #ddd;
+   	font-family:'微软雅黑';
+   	}
+
+
+
+
+
+
+
+   div#navsecond ul, div#navsecond li, div#sidebar ul, div#sidebar li	{
+   	margin: 0;
+   	padding: 0;
+   	font-family:'微软雅黑';
+   	}
+
+
+   div#navsecond li, div#sidebar li	{
+   	list-style: none;
+   	}
+
+   div#navsecond a, div#sidebar a {
+   	display:block;
+   	padding:5px 0 5px 15px;
+   	font-size:12px;
+   	border-bottom:0px solid #ddd;
+   	text-decoration:none;
+   	}
+
+   div#navsecond ul a.active {
+   	background : #f5f5f5;
+   	color:#990000;
+   	}
+
+
+   div#navsecond a:link, div#navsecond a:visited	{
+   	text-decoration : none;
+   	color:#000000;
+   	background : transparent;
+   	}
+
+
+   div#navsecond a:hover	{
+   	text-decoration : none;
+   	color : #fff;
+   	background : #aaa;
+   	}
+
+
+   div#navsecond li.currentLink a:link, div#navsecond li.currentLink a:visited	{
+   	text-decoration : none;
+   	color:#ffffff;
+   	background-color: #BD2D30;
+   	}
+
+
+    </style>
+{% endblock %}
+<!-- 覆盖父模板的navbar模块，并使用了父模板的样式 -->
+{% block navbar %}
+    <div class="navbar navbar-inverse" role="navigation">
+        <div class="comtainer">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="http://localhost:5000">首页</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="http://www.baidu.com">赣菜</a></li>
+                    <li><a href="http://www.baidu.com">粤菜</a></li>
+                    <li><a href="http://www.baidu.com">湘菜</a></li>
+                    <li><a href="http://www.baidu.com">川菜</a></li>
+                    <li><a href="http://www.baidu.com">闽菜</a></li>
+                    <li><a href="http://www.baidu.com">浙菜</a></li>
+                    <li><a href="http://www.baidu.com">徽菜</a></li>
+                    <li><a href="http://www.baidu.com">鲁菜</a></li>
+                    <li><a href="http://www.baidu.com">苏菜</a></li>
+                    <li><a href="http://www.baidu.com"> 豫菜</a></li>
+                    <li><a href="http://www.baidu.com">京菜</a></li>
+                    <li><a href="http://www.baidu.com">沪菜</a></li>
+                     <li><a href="http://www.baidu.com">陕菜</a></li>
+                    <li><a href="http://www.baidu.com">东北菜</a></li>
+                    <li><a href="http://www.baidu.com">皖北菜</a></li>
+                    <li><a href="https://baike.baidu.com/item/%E5%85%AB%E5%A4%A7%E8%8F%9C%E7%B3%BB/873948?fr=aladdin#4_5">菜系百科</a>
+                    <li><a href="http://www.baidu.com">用户指南</a></li>
+                    <li><a href="http://www.baidu.com">关于我们</a></li>
+                    {% if ok %}
+                        <li><a href="http://localhost:5000/user">{{username}}</a></li>
+                    {% else %}
+                    <li><a href="http://localhost:5000/login">登录/注册</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+<!-- 覆盖父模板中的content块，并使用父模板的样式 -->
+{% block content %}
+{{super()}}
+{% if fg %}
+    <script>
+        alert('你还未登录！')
+    </script>
+{% endif %}
+<div id="header" class="" >
+
+    <div id="pic1"></div>
+    <div id="pic2"></div>
+    <div id="pic3"></div>
+    <div id="pic4"></div>
+
+</div>
+<hr color="darkgray">
+<form action="http://localhost:5000/search" method=get>
+    <div id="div_search">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input id="search_text" type="text" name="search_name" size="22" maxlength="60" placeholder="搜索菜名、菜系、烹菜法"/>
+        <input id="search_submit" type="submit"  value="搜索"/>
+    </div>
+</form>
+<br>
+<br>
+<div class="title"></div>
+
+<div class="left">
+    <br>
+    <center>
+    <div id="navsecond">
+        <hr>
+        <h2><strong>烹菜法</strong></h2>
+        <ul>
+        <li><a href="/html/index.asp" name="炒">炒</a></li>
+        <li><a href="/html5/index.asp" name="蒸">蒸</a></li>
+        <li><a href="/xhtml/index.asp" name="焗">焗</a></li>
+        <li><a href="/css/index.asp" name="烤">烤</a></li>
+        <li><a href="/css3/index.asp" name="煮">煮</a></li>
+        <li><a href="/tcpip/index.asp" name="焖">焖</a></li>
+        </ul>
+    <hr>
+        <h2><strong>娱乐互动</strong></h2>
+        <ul>
+            <li><a href="http://www.baidu.com" name="美食直播">美食直播</a></li>
+            <li><a href="http://www.baidu.com" name="娱乐段子">娱乐段子</a> </li>
+            <li><a href="httP://www.baidu.com" name="娱乐视频">娱乐视频</a> </li>
+            <li><a href="http;//www.baidu.com" name="轻音乐">轻音乐</a></li>
+        </ul>
+        <hr>
+        <h2><strong>用户相关</strong></h2>
+        <ul>
+            <li><a href="http://localhost:5000/user" name="用户信息">用户信息</a> </li>
+            <li><a href="http://www.baidu.com" name="消息盒子">消息盒子</a> </li>
+            <li><a href="http://localhost:5000/collection" name="我的收藏">我的收藏</a> </li>
+            <li><a href="http://www.baidu.com" name="设置">设置</a> </li>
+        </ul>
+
+
+
+</div>
+</center>
+</div>
+
+    <div class="center">
+        <ul>
+        {% for cookbook in list %}
+            <li>
+                <center>
+                    <img src="{{cookbook[1]}}" width="160px" height="160px">
+                </center>
+                <center>
+                    <a href="http://www.baidu.com">{{cookbook[2]}}</a>
+                </center>
+            </li>
+        {% endfor %}
+        </ul>
+        <form action="http://localhost:5000/more" method=get>
+            <center>
+                <input type="submit" onmouseover="this.style.backgroundColor='#eeeeee'" onmouseout="this.style.backgroundColor='white'" style="width:60%;height:32px;color:cornflowerblue;border:none;margin-top:40px;" value="加载更多">
+            </center><br><br><br>
+        </form>
+    </div>
+
+    <div class="right">
+                <br><br>
+                <img src="static/guanggao1.png">
+        <div id="doulist">
+            <h4 style="font-family: '楷体';color: darkorange;margin-left:20px;">一周口碑榜</h4>
+            <ul>
+                <li>
+
+                <div class="title"><a target="_blank" href="https://www.douban.com/doulist/947900/">麻辣小龙虾</a></div><span>1294推荐</span>
+                </li>
+                <li>
+
+                <div class="title"><a target="_blank" href="https://www.douban.com/doulist/4012165/">清蒸鲈鱼</a></div><span>6推荐</span>
+                </li>
+                <li>
+
+                <div class="title"><a target="_blank" href="https://www.douban.com/doulist/1125971/">辣椒炒肉</a></div><span>87推荐</span>
+                </li>
+                <li>
+
+                <div class="title"><a target="_blank" href="https://www.douban.com/doulist/669101/">酒香花甲</a></div> <span>30推荐</span>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+<br><br>
+<br><br>
+
+
+{% endblock %}
+
+{% block scripts %}
+{{super()}}
+<script type="text/javascript">
+
+    function advice(){
+        alert("建议提交成功！")
+
+    }
+
+    function test(obj){
+
+        var div1=document.getElementById("div2");
+        if(div1.style.display=="block"){
+            div1.style.display="none";
+            obj.src="static/p.png";
+        }
+        else{
+            div1.style.display="block";
+            obj.src="static/d.png";
+        }
+    }
+    function test1(object){
+
+        var div5=document.getElementById("div3");
+        if(div5.style.display=="block"){
+            div5.style.display="none";
+            object.src="static/p.png";
+        }
+        else{
+            div5.style.display="block";
+            object.src="static/d.png";
+        }
+    }
+        function test2(object){
+
+        var div6=document.getElementById("div4");
+        if(div6.style.display=="block"){
+            div6.style.display="none";
+            object.src="static/p.png";
+        }
+        else{
+            div6.style.display="block";
+            object.src="static/d.png";
+        }
+    }
+    function dd(m)
+    {
+        x=x+m;
+        if(x==l)
+        {x=0;}
+        else if(x==-1)
+        {x=l;}
+        kj.style.backgroundImage=jh[x];
+    }
+
+    var jh=new Array();
+    jh[0]="url('static/one.jpg')";
+    jh[1]="url('static/two.jpg')";
+    jh[2]="url('static/three.jpg')";
+    jh[3]="url('static/four.jpg')";
+    var kj=document.getElementById('pic1');<!--获取框架div的标签，在下面进行更改背景-->
+    var x=-1;<!--定义变量x，建立索引-->
+    var l=jh.length;<!--获取集合中元素个数-->
+    function ll()
+    {
+        x++;
+        if (x==l)
+        {
+            x=0;
+        }
+        kj.style.backgroundImage=jh[x];
+        window.setTimeout("ll()",2000);<!--2s后再次播放集合中的图片-->
+    }
+    window.setTimeout("ll()",0);<!--开始进行轮播-->
+
+
+    var list1=new Array();
+    list1[0]="url('static/two.jpg')";
+    list1[1]="url('static/three.jpg')";
+    list1[2]="url('static/four.jpg')";
+    list1[3]="url('static/one.jpg')";
+     function Y(t)
+    {
+        y=y+t;
+        if(y==l)
+        {y=0;}
+        else if(y==-1)
+        {y=l;}
+        jk.style.backgroundImage=[y];
+    }
+    var jk=document.getElementById('pic2');<!--获取框架div的标签，在下面进行更改背景-->
+    var y=-1;<!--定义变量x，建立索引-->
+    var l=list1.length;<!--获取集合中元素个数-->
+    function YY()
+    {
+        y++;
+        if (y==l)
+        {
+            y=0;
+        }
+        jk.style.backgroundImage=list1[y];
+        window.setTimeout("YY()",2000);<!--2s后再次播放集合中的图片-->
+    }
+    window.setTimeout("YY()",0);<!--开始进行轮播-->
+
+
+
+    var list2=new Array();
+    list2[0]="url('static/three.jpg')";
+    list2[1]="url('static/four.jpg')";
+    list2[2]="url('static/one.jpg')";
+    list2[3]="url('static/two.jpg')";
+            function CC(c)
+    {
+        z=z+c;
+        if(z==l)
+        {z=0;}
+        else if(z==-1)
+        {z=l;}
+        j.style.backgroundImage=[z];
+    }
+    var j=document.getElementById('pic3');<!--获取框架div的标签，在下面进行更改背景-->
+    var z=-1;<!--定义变量x，建立索引-->
+    var l=list2.length;<!--获取集合中元素个数-->
+    function T()
+    {
+        z++;
+        if (z==l)
+        {
+            z=0;
+        }
+        j.style.backgroundImage=list2[z];
+        window.setTimeout("T()",2000);<!--2s后再次播放集合中的图片-->
+    }
+    window.setTimeout("T()",0);<!--开始进行轮播-->
+
+
+
+
+var list3=new Array();
+    list3[0]="url('static/four.jpg')";
+    list3[1]="url('static/one.jpg')";
+    list3[2]="url('static/two.jpg')";
+    list3[3]="url('static/three.jpg')";
+            function DD(d)
+    {
+        w=w+d;
+        if(w==l)
+        {w=0;}
+        else if(w==-1)
+        {w=l;}
+        k.style.backgroundImage=[w];
+    }
+    var k=document.getElementById('pic4');<!--获取框架div的标签，在下面进行更改背景-->
+    var w=-1;<!--定义变量x，建立索引-->
+    var l=list3.length;<!--获取集合中元素个数-->
+    function q()
+    {
+        w++;
+        if (w==l)
+        {
+            w=0;
+        }
+        k.style.backgroundImage=list3[w];
+        window.setTimeout("q()",2000);<!--2s后再次播放集合中的图片-->
+    }
+    window.setTimeout("q()",0);<!--开始进行轮播-->
+
+
+
+</script>
+{% endblock %}
