@@ -12,3 +12,6 @@
 * 前端框架（Bootstrap）
 ### 数据准备
 * 从百度或其他网站爬取
+## 项目微展示
+![one](https://github.com/yudongnan23/CaiPu/blob/master/22880dedd9f83b1f21754bfaacb95ba.png)
+![two](https://github.com/yudongnan23/CaiPu/blob/master/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190805091407.png)
